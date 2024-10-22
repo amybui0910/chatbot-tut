@@ -5,13 +5,13 @@ lemmatizer = WordNetLemmatizer()
 import pickle
 import numpy as np
 
-from tensorflow.python.keras.models import load_model
+from keras.models import load_model
 model = load_model('chatbot_model.h5')
 import json
 import random
 intents = json.loads(open('intents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
+words = pickle.load(open('words.pk1', 'rb'))
+classes = pickle.load(open('classes.pk1', 'rb'))
 
 
 # clean_up_sentences takes a sentence and returns a bag of words array: 0 or 1 for words 
@@ -75,8 +75,8 @@ import tkinter as tk
 from tkinter import *
 
 def send(): 
-    msg = tk.Entry.get("1.0", "end-1c").strip()
-    Entry.delete('0.0', END)
+    msg = EntryBox.get("1.0", 'end-1c').strip()
+    EntryBox.delete('0.0', END)
     
     if msg != '': 
         ChatBox.config(state=NORMAL)

@@ -2,9 +2,9 @@
 # required modules
 
 import numpy as np
-from tensorflow.python.keras.models import Sequential
-from tensorflow.python.keras.layers import Dense, Activation, Dropout
-from tensorflow.python.keras.optimizer_v1 import SGD
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Dropout
+from keras.optimizers import SGD
 import random
 
 import nltk 
@@ -81,7 +81,7 @@ for doc in documents:
     
 # shuffle the features and make numpy array
 random.shuffle(training)
-training = np.array(training)
+training = np.array(training, dtype='object')
 
 # create training and testing lists. X - patterns, Y - intents
 train_x = list(training[:,0]) 
@@ -100,8 +100,7 @@ model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
 # compiling model
-sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-
+sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 # training and saving model
